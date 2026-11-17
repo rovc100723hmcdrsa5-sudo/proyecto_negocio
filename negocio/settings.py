@@ -19,7 +19,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-@z8z7+x_j1-pyi3&(@(cy
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get('DJANGO_DEBUG', 'False').lower() == 'true'
+DEBUG = os.environ.get('DJANGO_DEBUG', 'False').lower() == 'True'
 
 
 # Permitir el dominio de Render y localhost para desarrollo
