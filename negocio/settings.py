@@ -142,3 +142,4 @@ MAILERS = {
 LOGIN_REDIRECT_URL = 'inicio'
 LOGOUT_REDIRECT_URL = 'inicio'
 LOGIN_URL = 'login'
+STATICFILES_DIRS = [BASE_DIR / 'static']
