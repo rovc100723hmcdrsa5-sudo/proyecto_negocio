@@ -83,7 +83,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'negocio.wsgi.application'
 
-
+DATABASE_URL = os.environ.get("DATABASE_URL")
 
 DATABASES = { 
     'default': dj_database_url.config( 
