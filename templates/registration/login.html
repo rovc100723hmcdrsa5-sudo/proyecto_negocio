@@ -1,15 +1,48 @@
 {% extends 'base.html' %}
-{% block title %}Iniciar Sesión{% endblock %}
+
+
+{% block title %}Iniciar Sesión - Papelería Arte y Papel{% endblock %}
+
+
 {% block content %}
-<div class="card" style="max-width: 400px; margin: 0 auto;">
-    <h2>Iniciar Sesión</h2>
+<div class="card login-card">
+    <h2 style="margin-bottom: 1.25rem; color: var(--color-primary); text-align: center;">Iniciar Sesión</h2>
+
+
+    {% if form.errors %}
+    <ul class="messages">
+        <li class="error">Usuario o contraseña incorrectos. Verifica tus datos.</li>
+    </ul>
+    {% endif %}
+
+
     <form method="post">
         {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit" class="btn btn-primary">Entrar</button>
+        
+        <div class="form-group">
+            <label for="{{ form.username.id_for_label }}">Nombre de usuario:</label>
+            <input type="text" 
+                   name="{{ form.username.html_name }}" 
+                   id="{{ form.username.id_for_label }}" 
+                   value="{{ form.username.value|default_if_none:'' }}"
+                   class="form-control" 
+                   placeholder="Ingresa tu usuario" 
+                   required autofocus>
+        </div>
+
+
+        <div class="form-group">
+            <label for="{{ form.password.id_for_label }}">Contraseña:</label>
+            <input type="password" 
+                   name="{{ form.password.html_name }}" 
+                   id="{{ form.password.id_for_label }}" 
+                   class="form-control" 
+                   placeholder="Ingresa tu contraseña" 
+                   required>
+        </div>
+
+
+        <button type="submit" class="btn btn-primary btn-block">Entrar</button>
     </form>
-    {% if form.errors %}
-        <p style="color: #dc2626; margin-top: 10px;">Usuario o contraseña incorrectos.</p>
-    {% endif %}
 </div>
 {% endblock %}
