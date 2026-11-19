@@ -4,34 +4,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}Papelería arte y papel - Sistema de Gestión{% endblock %}</title>
-    <!-- Tipografías de la Parte 2: Plus Jakarta Sans y Nunito Sans -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700&family=Plus+Jakarta+Sans:wght@600;700&display=swap" rel="stylesheet">
-    <!-- Hoja de estilos principal -->
+    <title>{% block title %}Papeleria Arte y Papel{% endblock %}</title>
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 </head>
 <body>
     <header class="site-header">
-        <h1><a href="{% url 'inicio' %}" class="logo">Papelería arte y papel</a></h1>
         <nav>
-            <a href="{% url 'lista_productos' %}">Productos</a>
-            <a href="{% url 'lista_categorias' %}">Categorías</a>
-            <a href="{% url 'lista_clientes' %}">Clientes</a>
-            {% if user.is_authenticated %}
-                <a href="{% url 'dashboard' %}">Dashboard</a>
-                <span class="user-greeting">Hola, {{ user.username }}</span>
-                <form action="{% url 'logout' %}" method="post" class="logout-form">
-                    {% csrf_token %}
-                    <button type="submit" class="btn btn-danger">Cerrar sesión</button>
-                </form>
-            {% else %}
-                <a href="{% url 'login' %}" class="btn btn-secondary-accent">Iniciar sesión</a>
-            {% endif %}
+            <a href="{% url 'inicio' %}" class="logo">Arte y Papel</a>
+            <div class="nav-links">
+                <a href="{% url 'lista_productos' %}">Productos</a>
+                <a href="{% url 'lista_categorias' %}">Categorías</a>
+                <a href="{% url 'lista_clientes' %}">Clientes</a>
+                {% if user.is_authenticated %}
+                    <a href="{% url 'dashboard' %}">Dashboard</a>
+                    <span class="user-name">👤 {{ user.username }}</span>
+                    <form action="{% url 'logout' %}" method="post" class="logout-form">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-danger">Salir</button>
+                    </form>
+                {% else %}
+                    <a href="{% url 'login' %}" class="btn btn-success">Entrar</a>
+                {% endif %}
+            </div>
         </nav>
     </header>
-
 
     <main class="container">
         {% if messages %}
@@ -42,13 +38,11 @@
             </ul>
         {% endif %}
 
-
         {% block content %}{% endblock %}
     </main>
 
-
     <footer class="site-footer">
-        <p>Papelería arte y papel —  cesar yael rodriguez vargas {% now "Y" %}</p>
+        <p>© {% now "Y" %} — Gustavo Díaz Martínez</p> 
     </footer>
 </body>
 </html>
